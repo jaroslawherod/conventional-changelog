@@ -1,0 +1,6 @@
+rootProject.name = 'conventional-changelog'
+
+
+include 'domain'
+include 'changelog'
+

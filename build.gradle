@@ -1,0 +1,28 @@
+allprojects {
+    ext.versions = [
+            junit      : '4.11',
+            lombok     : '1.16.6'
+    ]
+
+}
+
+
+subprojects {
+    apply plugin: 'java'
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        compile  "org.projectlombok:lombok:${versions.lombok}"
+        testCompile "junit:junit:${versions.junit}"
+    }
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.11'
+}
+
+

@@ -1,7 +1,13 @@
 allprojects {
     ext.versions = [
-            junit      : '4.11',
-            lombok     : '1.16.6'
+            cglib    : '3.1',
+            grgit    : '1.5.0',
+            groovy   : '2.4.6',
+            lombok   : '1.16.6',
+            reactor  : '2.5.0.BUILD-SNAPSHOT',
+            spock    : '1.0-groovy-2.4',
+            objenesis: '2.1',
+            slf4j    : '1.7.18'
     ]
 
 }
@@ -9,14 +15,25 @@ allprojects {
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'groovy'
     sourceCompatibility = '1.8'
     targetCompatibility = '1.8'
     repositories {
+        maven { url 'http://repo.spring.io/snapshot' }
         mavenCentral()
     }
     dependencies {
-        compile  "org.projectlombok:lombok:${versions.lombok}"
-        testCompile "junit:junit:${versions.junit}"
+        compile "org.projectlombok:lombok:${versions.lombok}"
+        compile "io.projectreactor:reactor-core:${versions.reactor}"
+        compile "org.ajoberstar:grgit:${versions.grgit}"
+
+        compile "org.codehaus.groovy:groovy-all:${versions.groovy}"
+        testCompile "org.spockframework:spock-core:${versions.spock}"
+
+        testRuntime "cglib:cglib-nodep:${versions.cglib}"
+        testRuntime "org.objenesis:objenesis:${versions.objenesis}"
+        testRuntime "org.slf4j:slf4j-simple:${versions.slf4j}"
+
     }
 }
 
@@ -25,4 +42,8 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.11'
 }
 
-
+project('changelog') {
+    dependencies {
+        compile project(':domain')
+    }
+}

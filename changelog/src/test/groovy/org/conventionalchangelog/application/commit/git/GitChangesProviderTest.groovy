@@ -1,4 +1,4 @@
-package org.conventionalchangelog.git
+package org.conventionalchangelog.application.commit.git
 
 import org.conventionalchangelog.domain.Commit
 import org.reactivestreams.Subscriber

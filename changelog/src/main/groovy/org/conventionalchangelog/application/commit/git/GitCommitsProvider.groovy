@@ -1,11 +1,11 @@
-package org.conventionalchangelog.git
+package org.conventionalchangelog.application.commit.git
 
 import groovy.transform.CompileStatic
 import groovy.transform.Immutable
 import org.ajoberstar.grgit.Commit
 import org.ajoberstar.grgit.Grgit
 import org.ajoberstar.grgit.service.ResolveService
-import org.conventionalchangelog.CommitsProvider
+import org.conventionalchangelog.application.commit.CommitsProvider
 import org.reactivestreams.Publisher
 import reactor.core.publisher.Flux
 

@@ -14,7 +14,6 @@ allprojects {
 
 
 subprojects {
-    apply plugin: 'java'
     apply plugin: 'groovy'
     sourceCompatibility = '1.8'
     targetCompatibility = '1.8'
@@ -43,7 +42,5 @@ task wrapper(type: Wrapper) {
 }
 
 project('changelog') {
-    dependencies {
-        compile project(':domain')
-    }
+
 }

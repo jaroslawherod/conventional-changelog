@@ -1,4 +1,4 @@
-package org.conventionalchangelog.git
+package org.conventionalchangelog.application.commit.git
 
 import groovy.transform.CompileDynamic
 import groovy.transform.CompileStatic

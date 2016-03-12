@@ -1,16 +1,13 @@
-package org.conventionalchangelog.domain;
+package org.conventionalchangelog.domain
 
-import static java.util.Arrays.asList;
+import groovy.transform.builder.Builder
 
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.function.Function
+import java.util.stream.Collectors
 
-import lombok.Builder;
-import lombok.Value;
+import static java.util.Arrays.asList
 
 @Builder
-@Value
 public class Change {
     ChangeType type;
 
@@ -31,7 +28,7 @@ public class Change {
     }
 
     private static Function<ChangeType, Change> asChange(String[] parts) {
-        return type -> builder().type(type).message(asList(parts).stream().skip(1).collect(Collectors.joining(":")).trim()).build();
+        return { type -> builder().type(type).message(asList(parts).stream().skip(1).collect(Collectors.joining(":")).trim()).build() };
     }
 
     private static boolean hasPrefix(String[] parts) {

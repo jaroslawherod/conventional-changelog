@@ -1,4 +1,4 @@
-package org.conventionalchangelog.git
+package org.conventionalchangelog.application.commit.git
 
 import org.ajoberstar.grgit.Grgit
 

@@ -1,7 +1,6 @@
-package org.conventionalchangelog.git
+package org.conventionalchangelog.application.commit.git
 
 import org.ajoberstar.grgit.Commit
-import org.conventionalchangelog.git.CommitComparator
 import spock.lang.Specification
 
 class CommitComparatorTest extends Specification {

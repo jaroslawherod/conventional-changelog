@@ -1,4 +1,4 @@
-package org.conventionalchangelog.application.commit.git
+package org.conventionalchangelog.change.infrastructure.commit.git
 
 import groovy.transform.CompileDynamic
 import groovy.transform.CompileStatic
@@ -33,8 +33,14 @@ class GitCommit implements org.conventionalchangelog.domain.Commit {
     @Override
     @CompileDynamic
     Iterable<Tag> getTags() {
-        repository.getTag().list().findAll({ it.commit == commit }).collect { new GitTag(tag: it, repository: repository) }
+        repository.tag.list().findAll({ it.commit == commit }).collect { new GitTag(tag: it, repository: repository) }
     }
 
 
+    @Override
+    public String toString() {
+        return "GitCommit{" +
+                "commit=" + commit +
+                '}';
+    }
 }

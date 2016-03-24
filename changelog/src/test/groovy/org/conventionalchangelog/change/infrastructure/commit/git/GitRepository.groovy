@@ -1,6 +1,7 @@
-package org.conventionalchangelog.application.commit.git
+package org.conventionalchangelog.change.infrastructure.commit.git
 
 import org.ajoberstar.grgit.Grgit
+import org.ajoberstar.grgit.operation.BranchListOp
 
 class GitRepository {
     File directory;
@@ -10,6 +11,12 @@ class GitRepository {
         directory = File.createTempDir()
         directory.deleteOnExit();
         repository = Grgit.init(dir: directory)
+    }
+
+    def head() { repository.head() }
+
+    def tail() {
+        repository.log().last()
     }
 
     def change(String file, String message) {
@@ -33,13 +40,15 @@ class GitRepository {
         return this;
     }
 
-    def branch(branch){
-        def branches =  repository.branch.list(mode: BranchListOp.Mode.LOCAL)
+    def branch(branch) {
+        def branches = repository.branch.list(mode: BranchListOp.Mode.LOCAL)
         repository.branch.add(branch);
+        return this
     }
 
     def tag(String name) {
         repository.tag.add(name: name);
+        return this;
     }
 
     private def generator = { String alphabet, int n ->
@@ -49,6 +58,7 @@ class GitRepository {
     }.curry((('A'..'Z') + ('0'..'9') + ('a'..'z')).join());
 
     def dispose() {
+        repository.close();
         directory.deleteDir();
     }
 

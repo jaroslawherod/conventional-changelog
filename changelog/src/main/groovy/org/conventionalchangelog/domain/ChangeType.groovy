@@ -1,10 +1,7 @@
-package org.conventionalchangelog.domain;
-
-import java.util.Objects;
-import java.util.Optional;
+package org.conventionalchangelog.domain
 
 public enum ChangeType {
-    FEATURE("feat"), CHORE, REFACTOR;
+    FEATURE("feat"), CHORE, REFACTOR, BUGFIX("fix");
 
     private final String prefix;
 
@@ -16,14 +13,14 @@ public enum ChangeType {
         this.prefix = prefix;
     }
 
-    private boolean matches(String type){
+    private boolean matches(String type) {
         return prefix.equalsIgnoreCase(type);
     }
 
     public static Optional<ChangeType> from(String type) {
         Objects.requireNonNull(type);
-        for ( ChangeType changeType : values()){
-            if(changeType.matches(type)){
+        for (ChangeType changeType : values()) {
+            if (changeType.matches(type)) {
                 return Optional.of(changeType);
             }
         }

@@ -1,4 +1,4 @@
-package org.conventionalchangelog.application.commit.git
+package org.conventionalchangelog.change.infrastructure.commit.git
 
 import groovy.transform.CompileStatic
 import org.ajoberstar.grgit.Grgit
@@ -12,5 +12,10 @@ class GitTag implements org.conventionalchangelog.domain.Tag {
     @Override
     String getName() {
         return tag.getName()
+    }
+
+    @Override
+    String getId() {
+        return tag.commit.id
     }
 }
